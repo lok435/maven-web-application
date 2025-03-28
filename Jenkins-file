@@ -16,7 +16,7 @@ node{
     
     stage('deploy content in the Tomcat'){
         sshagent(['c09cf00b-726d-4670-a1d0-7a49362811fc']) {
-        sh "rm -rf target/*"
+        sh "rm -rf /var/lib/jenkins/workspace/pipeline/target/maven-web-application.war"
         sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@13.200.251.5:/opt/Tomcat/webapps/"
    }
     }
