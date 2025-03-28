@@ -1,1 +1,22 @@
-sddsdsffd
+node{
+    
+    echo "JOb name is : ${env.JOB_NAME}"
+    echo "build number is : ${env.BUILD_NUMBER}"
+    def mavenHome = tool name: 'maven-3.8.4'
+    
+//getting code from github
+    stage('git checkout'){
+        git branch: 'devlopment', credentialsId: '4c3f5a40-d4b5-41e2-be30-e68ac3b142e4',
+        url: 'https://github.com/lok435/maven-web-application.git'
+    }
+    
+    stage('build'){
+        sh "${mavenHome}/bin/mvn clean package"
+    }
+    
+    stage('deploy content in the Tomcat'){
+        sshagent(['c09cf00b-726d-4670-a1d0-7a49362811fc']) {
+        sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@13.200.251.5:/opt/Tomcat/webapps"
+   }
+    }
+}
