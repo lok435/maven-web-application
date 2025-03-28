@@ -3,6 +3,7 @@ node{
     echo "JOb name is : ${env.JOB_NAME}"
     echo "build number is : ${env.BUILD_NUMBER}"
     def mavenHome = tool name: 'maven-3.8.4'
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '4', numToKeepStr: '4')), pipelineTriggers([githubPush()])])
     
 //getting code from github
     stage('git checkout'){
