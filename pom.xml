@@ -38,6 +38,8 @@
 		</dependency>
 		
 		<!-- test dependencies -->
+		<!--maven-3.8.7-->
+		<!-- java-open-jdk-11-->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
